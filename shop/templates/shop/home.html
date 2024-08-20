@@ -1,0 +1,106 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block content %}
+
+	<section>
+		<div class="container py-5">
+			<div class="row align-items-center justify-content-center">
+				<div class="col-12 col-lg-6">
+					<h1 class="display-4 fw-bold"><span class=" span-text">Discover </span>the Best of Cars</h1>
+					<p class="lead">
+						Explore our latest cars and designed to elevate
+						your  lifestyle
+					</p>
+					<button class=" f1-btn btn btn-primary px-5 py-3 d-inline-block mt-3">Shop Now</button>
+				</div>
+				<div class="col-12 col-lg-6 mt-5">
+					<img src="/static/images/gle.jpg" alt="tech gear vr headset" class="f1-img img-fluid ">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- our services -->
+	<section class=" service container py-5 mt-4" id="service">
+        <div class="row">
+            <div class="col-12">
+                <h2 class=" services-text  text-center mb-3 fw-bold"> Key Features</h2>
+            </div>
+        </div>
+
+		<div class="row mt-2 g-4">
+            <div class="col-12 col-lg-4">
+				<div class="single-service-item">
+						<h2> Largest dealership</h2>
+						<p class="card-text">
+							Explore products featuring the latest and most Innovative
+							technologies.
+						</p>				
+				</div>
+            </div>
+            <div class="col-12 col-lg-4">
+				<div class="single-service-item">
+						<h2> Unlimited repair warrenty</h2>
+						<p class="card-text">
+							Explore products featuring the latest and most Innovative
+							technologies.
+						</p>				
+				</div>
+            </div>
+            <div class="col-12 col-lg-4">
+				<div class="single-service-item">
+						<h2> Insurence support</h2>
+						<p class="card-text">
+							Explore products featuring the latest and most Innovative
+							technologies.
+						</p>				
+				</div>
+            </div>
+            
+            
+        </div>
+	</section>
+
+	<section id="new-cars" class="new-cars">
+		<div class="container">
+			<div class="section-header text-center">
+				<p>checkout <span>the</span> latest cars</p>
+				<h2>newest cars</h2>
+			</div><!--/.section-header-->
+			<div class="new-cars-content">
+				<div class="owl-carousel owl-theme" id="new-cars-carousel">
+					{% for car in cars %}
+					<div class="new-cars-item">
+						<div class="single-new-cars-item">
+							<div class="row">
+								<div class="col-md-7 col-sm-12">
+									<div class="new-cars-img">
+										<img src="{{ car.image.url }}" alt="img"/>
+									</div><!--/.new-cars-img-->
+								</div>
+								<div class="col-md-5 col-sm-12">
+									<div class="new-cars-txt">
+										<h2><a href="{% url 'shop:car_detail' car.id %}">{{ car.make}} <span>{{car.model }}</span></a></h2>
+										<p>
+											{{ car.description }} 
+										</p>
+										
+										<a href="{% url 'shop:car_detail' car.id %}">
+												<button class="welcome-btn new-cars-btn px-3 py-3 d-inline-block mt-3" >
+														View Details
+											</button>
+											</a>
+									</div><!--/.new-cars-txt-->	
+								</div><!--/.col-->
+							</div><!--/.row-->
+						</div><!--/.single-new-cars-item-->
+					</div><!--/.new-cars-item-->
+					
+					{% endfor %}
+				</div><!--/.new-cars-content-->
+			</div><!--/.container-->
+			
+	</section><!--/.new-cars-->
+	<!--new-cars end -->
+
+{% endblock %}

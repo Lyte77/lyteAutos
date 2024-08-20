@@ -1,0 +1,79 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+
+{% if cart_items %}
+<div class="container">
+    <div class="row">
+      <div class="col-12">   
+
+        <h2>Shopping Cart</h2>
+        <p>You have {{ cart_items|length }} items in your cart.</p>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+
+        <div class="row">
+          <div class="col-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in cart_items %}
+                <tr>
+                  <td><img src="{{ item.car.image.url }}" alt="{{ item.car.model }}" width="50"></td>
+                  <td>{{ item.car.model }} {{ item.car.make }}</td>
+                  <td>{{ item.car.price }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>{{ item.sub_total }}</td>
+                  <td><a href="{% url 'cart:delete_cart_item' item.id %}" class="btn btn-danger">Remove</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <h3>Cart Total</h3>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>Subtotal</td>
+              <td>{{ cart_total }}</td>
+            </tr>
+            <tr>
+              <td>Shipping</td>
+              <td>{{ shipping_cost }}</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td>{{ total_price }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <a href="" class="btn btn-primary">Checkout</a>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <h1>Your cart is empty</h1>
+{% endif %}
+
+{% endblock %}
+
+
+  
+
+    
